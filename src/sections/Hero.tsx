@@ -4,20 +4,33 @@ import designExample1Image from '@/assets/images/design-example-1.png'
 import designExample2Image from '@/assets/images/design-example-2.png'
 import Pointer from "@/components/Point";
 import Image from "next/image";
-import {motion} from 'framer-motion';
-import { useRef } from "react";
+import {motion , useAnimate} from 'framer-motion';
+import { useEffect, useRef } from "react";
 export default function Hero() {
     const containerRef = useRef(null)
-    return <section ref={containerRef} className="py-24 overflow-x-clip">
+    const [leftDesignScope , LeftDesignAnimate ] = useAnimate();
+    const [leftPointerScope , LeftPointerAnimate ] = useAnimate();
+    useEffect(()=>{
+        LeftDesignAnimate([
+    [ leftDesignScope.current,{opacity : 1}, {duration : 0.5}], 
+    [ leftDesignScope.current,{y : 0 , x :0 }, {duration : 0.5}], 
+        ])
+        LeftPointerAnimate([
+            [leftPointerScope.current , {opacity : 1 }, {duration : 0.5}],
+            [leftPointerScope.current , {y: 0 , x : -100}, {duration : 0.5}], 
+            [leftPointerScope.current , {y: [0 , 16 , 0] , x : 0 }, {duration : 0.5 , ease : 'easeInOut'}]
+        ])
+    },[]);
+    return <section className="py-24 overflow-x-clip">
         <div className="container relative ">
-            <motion.div drag dragConstraints={containerRef} className="absolute -left-32 top-16 hidden lg:block">
+            <motion.div ref={leftDesignScope} initial={{opacity : 0,y : 100 , x: -100}}className="absolute -left-32 top-16 hidden lg:block">
                 <Image src={designExample1Image} alt="example 1" />
+            </motion.div>
+            <motion.div initial={{opacity : 0 , y: 100 ,x : -200}} ref={leftPointerScope} className="absolute left-56 top-96 hidden lg:block">
+                <Pointer name="Andrea" />
             </motion.div>
             <div className="absolute -right-64 -top-16 hidden lg:block ">
                 <Image src={designExample2Image} alt="example 2" />
-            </div>
-            <div className="absolute left-56 top-96 hidden lg:block">
-                <Pointer name="Andrea" />
             </div>
             <div className="absolute right-80 -top-4 hidden lg:block">
                 <Pointer name="Bryan " color="red"/>
