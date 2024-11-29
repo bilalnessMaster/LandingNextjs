@@ -22,7 +22,7 @@ export default function Introduction() {
         <section className="py-28 lg:py-40">    
           <div className="container 0 ">
        
-           <div className="sticky top-28">
+           <div className="sticky top-28 lg:top-40">
            <div className="text-center">
            <Tag>
             Introducing Layers

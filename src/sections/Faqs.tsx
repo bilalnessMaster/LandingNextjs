@@ -1,4 +1,6 @@
+'use client'
 import Tag from "@/components/Tag";
+import { AnimatePresence , motion} from "framer-motion";
 import { div } from "framer-motion/client";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -27,8 +29,8 @@ const faqs = [
 ];
 
 export default function Faqs() {
-    // const [open , setOpen] = useState()
-    let selectFaq = 0;
+    const [open , setOpen] = useState<number>(0)
+ 
     return (
         <section className="py-24">
             <div className="container">
@@ -39,13 +41,13 @@ export default function Faqs() {
                     Questions? We've got{" "}
                     <span className="text-lime-400">answers</span>
                 </h2>
-                <div className="mt-12 flex flex-col gap-6 max-w-xl mx-auto">
+                <div className="mt-12  flex flex-col gap-6 max-w-xl mx-auto">
                     {faqs.map((faq, faqIndex) => (
                         <div
                             className="bg-neutral-900 border border-white/10 rounded-2xl p-6"
                             key={faq.question}
                         >
-                            <div className="flex justify-between items-center  ">
+                            <div onClick={()=>setOpen(faqIndex)} className="flex justify-between items-center  ">
                                 <h3 className="font-medium ">{faq.question}</h3>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -58,22 +60,38 @@ export default function Faqs() {
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
                                     className={twMerge(
-                                        "feather feather-plus text-lime-400 flex-shrink-0",
-                                        selectFaq === faqIndex && "rotate-45"
+                                        "feather feather-plus text-lime-400 transition duration-300 flex-shrink-0",
+                                        open === faqIndex && "rotate-45 "
                                     )}
                                 >
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                 </svg>
                             </div>
-                            <div
+                            <AnimatePresence>
+                            {
+                                 open === faqIndex && (
+                                    <motion.div
+                                    initial={{
+                                        height : 0,
+                                        marginTop : 0 
+                                    }}
+                                    animate={{
+                                        height : 'auto' , 
+                                        marginTop : 24
+                                    }}
+                                    exit={{
+                                        height : 0,
+                                        marginTop : 0 
+                                    }}
                                 className={twMerge(
-                                    "text-white/50 mt-6",
-                                    selectFaq !== faqIndex && "hidden"
-                                )}
+                                    "text-white/50 mt-6 overflow-hidden",)}
                             >
                                 <p>{faq.answer}</p>
-                            </div>
+                            </motion.div>
+                                 )
+                            }
+                            </AnimatePresence>
                         </div>
                     ))}
                 </div>
