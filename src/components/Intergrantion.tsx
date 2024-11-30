@@ -2,27 +2,40 @@
 import { type IntegrantionType } from "@/sections/Integrations";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
-import { motion } from "framer-motion";
-import { Fragment } from "react";
+import { AnimationPlaybackControls, motion, useAnimate } from "framer-motion";
+import { Fragment, useEffect, useRef, useState } from "react";
 const IntegrationColumn = (props: {
     integrations: IntegrantionType;
     className?: string;
     reverse? : boolean
-}) => {
+                                }) => {
     const { integrations, className  , reverse} = props;
+    const [scope , animate ] = useAnimate()
+    const [ishovered , setIsHovered] = useState(false)
+    const animation  = useRef<AnimationPlaybackControls>()
+    useEffect(()=>{
+        animation.current = animate([
+            [scope.current , {y: reverse ? 0 :"-50%",} , {duration: 30,ease: "linear",repeat: Infinity,}]
+        ])
+    },[])
+    useEffect(()=>{
+        if(  animation.current ){
+            if(ishovered){
+                animation.current.speed = 0.3
+            }else{
+                animation.current.speed = 1
+            }
+        }
+    },[ishovered])
     return (
         <motion.div
+            ref={scope}
+            onMouseEnter={()=>setIsHovered(true)}
+            onMouseLeave={()=>setIsHovered(false)}
             initial={{
-              y : reverse ? "-50%" : 0 , 
-            }}
-            animate={{
-                y: reverse ? 0 :"-50%",
-            }}
-            transition={{
-                duration: 30,
-                ease: "linear",
-                repeat: Infinity,
-            }}
+                y : reverse ? "-50%" : 0 , 
+              }}
+              
             className={twMerge("flex flex-col p-4 gap-4", className)}
         >
             {Array.from({ length: 2 }, (_, index) => (
