@@ -1,7 +1,7 @@
 'use client'
 import Tag from "@/components/Tag";
 import { AnimatePresence , motion} from "framer-motion";
-import { div } from "framer-motion/client";
+
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -38,7 +38,7 @@ export default function Faqs() {
                     <Tag>Faqs</Tag>
                 </div>
                 <h2 className="max-w-lg mx-auto text-6xl font-medium mt-6 text-center">
-                    Questions? We've got{" "}
+                    Questions? We&apos;ve got{" "}
                     <span className="text-lime-400">answers</span>
                 </h2>
                 <div className="mt-12  flex flex-col gap-6 max-w-xl mx-auto">

@@ -6,7 +6,7 @@ import slackIcom from '@/assets/images/slack-logo.svg'
 import relumeIcom from '@/assets/images/relume-logo.svg'
 import framerIcom from '@/assets/images/framer-logo.svg'
 import githubIcom from '@/assets/images/github-logo.svg'
-import Image from "next/image";
+
 import IntegrationColumn from "@/components/Intergrantion";
 const integrations = [
     { name: "Figma", icon: figmaIcom, description: "Figma is a collaborative interface design tool." },

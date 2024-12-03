@@ -45,7 +45,7 @@ export default function Hero() {
             [rightPointerScope.current ,{opacity : 1 , x:200 , y : 100 } , {duration : 0.5}],
             [rightPointerScope.current ,{opacity : 1 , x:[180,0] , y : 0 } , {duration : 0.5 , ease : 'easeInOut'}],
         ])
-    }, []);
+    });
     return (
         <section className="py-24 overflow-x-clip" style={{
             cursor :`url(${cursorPointer.src}) auto`

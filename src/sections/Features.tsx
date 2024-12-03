@@ -6,7 +6,7 @@ import avatar3 from "@/assets/images/avatar-florence-shaw.jpg";
 import avatar4 from '@/assets/images/avatar-owen-garcia.jpg';
 import Image from "next/image";
 import Avatar from "@/components/Avatar";
-import { space } from "postcss/lib/list";
+
 import Key from "@/components/Key";
 const features = [
     "Asset Library",
@@ -80,7 +80,7 @@ export default function Features() {
                     >
                         <div className="aspect-video py-6 ">
                             <p className="text-4xl text-center max-w- text-white/15 font-extrabold">
-                                We've achieved{" "}
+                                We&apos;ve achieved{" "}
                                 <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent relative">
                                     <span>
                                     incredible
