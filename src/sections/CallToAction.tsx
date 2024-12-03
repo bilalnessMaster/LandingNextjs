@@ -9,7 +9,7 @@ export default function CallToAction() {
         Animation.current = animate([
             [scope.current , { x : '-50%'},{duration : 30 , ease : 'linear' , repeat: Infinity}]
         ])
-    },[])
+    },[animate])
     useEffect(()=>{
         if (Animation.current){
             if(isHover){

@@ -5,10 +5,10 @@ import designExample2Image from "@/assets/images/design-example-2.png";
 import Pointer from "@/components/Point";
 import Image from "next/image";
 import { motion, useAnimate } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import cursorPointer from '@/assets/images/cursor-you.svg'
 export default function Hero() {
-    const containerRef = useRef(null);
+  
     const [leftDesignScope, LeftDesignAnimate] = useAnimate();
     const [leftPointerScope, LeftPointerAnimate] = useAnimate();
     const [rightDesignScope, rightDesignAnimate] = useAnimate();

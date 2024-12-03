@@ -17,7 +17,7 @@ const IntegrationColumn = (props: {
         animation.current = animate([
             [scope.current , {y: reverse ? 0 :"-50%",} , {duration: 30,ease: "linear",repeat: Infinity,}]
         ])
-    },[])
+    },[animate])
     useEffect(()=>{
         if(  animation.current ){
             if(ishovered){

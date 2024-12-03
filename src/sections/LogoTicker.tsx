@@ -9,6 +9,7 @@ import celestialLogo from "@/assets/images/celestial.svg";
 import twiceLogo from "@/assets/images/twice.svg";
 import Image from "next/image";
 import {motion } from 'framer-motion'
+import { Fragment } from "react";
 const logos = [
     { name: "Quantum", image: quantumLogo },
     { name: "Acme Corp", image: acmeLogo },
@@ -41,7 +42,7 @@ export default function LogoTicker() {
                     
                     className="flex flex-none gap-24 pr-24 ">
                         {Array.from({length : 2 } , (_, index)=>(
-                            <>
+                            <Fragment key={index}>
                             {logos.map((logo) => (
                             <Image
                                 src={logo.image}
@@ -50,7 +51,7 @@ export default function LogoTicker() {
                             />
                                  ))}
                             
-                            </>
+                            </Fragment>
                         ))}
                     </motion.div>
                 </div>
